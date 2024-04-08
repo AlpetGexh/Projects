@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+</head>
+
+
+<style>
+    #clockContainer {
+        position: relative;
+        margin: auto;
+        height: 40vw;
+        width: 40vw;
+        background-size: 100%;
+    }
+
+    #hour,
+    #minute,
+    #second {
+        position: absolute;
+        /* background: black; */
+        border-radius: 10px;
+        transform-origin: bottom;
+    }
+
+    #hour {
+        width: 1.8%;
+        height: 25%;
+        top: 25%;
+        left: 48.85%;
+        opacity: 0.8;
+    }
+
+    #minute {
+        width: 1.6%;
+        height: 30%;
+        top: 19%;
+        left: 48.9%;
+        opacity: 0.8;
+    }
+
+    #second {
+        width: 1%;
+        height: 40%;
+        top: 9%;
+        left: 49.25%;
+        opacity: 0.8;
+    }
+</style>
+
+<body>
+    <div id="clockContainer">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+    </div>
+
+    <script>
+        // Create the p elements for hour, minute, and second
+        let hour_texts = [];
+        let minute_texts = [];
+        let second_texts = [];
+        for (let i = 0; i < 5; i++) {
+            let hour_text = document.createElement("p");
+            hour.appendChild(hour_text);
+            hour_texts.push(hour_text);
+
+            let minute_text = document.createElement("p");
+            minute.appendChild(minute_text);
+            minute_texts.push(minute_text);
+
+            let second_text = document.createElement("p");
+            second.appendChild(second_text);
+            second_texts.push(second_text);
+        }
+
+        setInterval(() => {
+            let date = new Date();
+            let hr = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+            let hr_rotation = 30 * hr + min / 2;
+            let min_rotation = 6 * min;
+            let sec_rotation = 6 * sec;
+
+            hour.style.transform = `rotate(${hr_rotation}deg)`;
+            minute.style.transform = `rotate(${min_rotation}deg)`;
+            second.style.transform = `rotate(${sec_rotation}deg)`;
+
+            for (let i = 0; i < 5; i++) {
+                hour_texts[i].textContent = hr;
+                minute_texts[i].textContent = min;
+                second_texts[i].textContent = sec;
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
